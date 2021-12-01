@@ -1,0 +1,24 @@
+{
+  "name": "loancalculator",
+  "version": "1.0.0",
+  "description": "loan calculator with typescript",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "save": "^2.4.0",
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "./node_modules/.bin/babel"
+  },
+  "author": "Donatas",
+  "license": "ISC",
+  "keywords": []
+}
