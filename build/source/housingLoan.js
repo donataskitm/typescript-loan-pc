@@ -21,9 +21,29 @@ var HousingLoan = /** @class */ (function (_super) {
     function HousingLoan(loanAmount, loanDuration, interest) {
         if (interest === void 0) { interest = 2; }
         var _this = _super.call(this, loanAmount, loanDuration, interest) || this;
+        _this.durationLimit = 360;
         _this.interest = interest;
         return _this;
     }
+    HousingLoan.prototype.countMaxLoanAmount = function (numberOfMembers, salary) {
+        var minSalaryPercent = 0.4;
+        var maxInterestAmount = salary / numberOfMembers * minSalaryPercent;
+        return maxInterestAmount;
+    };
+    HousingLoan.prototype.isValid = function (salary, numberOfMembers) {
+        if (this.loanAmount <= 0 || this.loanDuration > this.durationLimit || this.loanDuration == 0 || salary == 0 || numberOfMembers == 0) {
+            alert("Please correct entered data");
+            return false;
+        }
+        return true;
+    };
+    HousingLoan.prototype.isExpectationOk = function (maxMonthPayment, monthPayment) {
+        if (maxMonthPayment < monthPayment) {
+            alert("Your income is insufficient. Choose another period and loan amount");
+            return false;
+        }
+        return true;
+    };
     return HousingLoan;
 }(loan_1.default));
 exports.default = HousingLoan;

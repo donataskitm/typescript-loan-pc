@@ -9,11 +9,11 @@ function countConsumerLoan() {
     var loanAmount = Number(document.getElementById('loanAmount').value);
     var loanTerm = Number(document.getElementById('loanTerm').value);
     var loanType = document.getElementById('loanType').value;
-    var dataFastLoan = new consumerLoan_1.default(loanAmount, loanTerm, interestList_1.interestList[loanType]);
-    if (dataFastLoan.isValid()) {
-        dataFastLoan.isTable();
-        dataFastLoan.createLoanInfo();
-        dataFastLoan.createPaymentTable();
+    var dataConsumerLoan = new consumerLoan_1.default(loanAmount, loanTerm, interestList_1.interestList[loanType]);
+    if (dataConsumerLoan.isValid()) {
+        dataConsumerLoan.isTable();
+        dataConsumerLoan.createLoanInfo();
+        dataConsumerLoan.createPaymentTable();
     }
 }
 exports.countConsumerLoan = countConsumerLoan;

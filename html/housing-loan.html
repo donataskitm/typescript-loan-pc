@@ -29,7 +29,6 @@
         </ul>
       </div>
     </nav>
-    <h1 class="pt-5 text-center">PAGE UNDER CONSTRUCTION...</h1>
     <h3 class="pt-5 text-center">HOUSING LOAN CALCULATOR</h3>
     <p class="text-center">Enter the data below</p>
     <div class="row text-center d-flex justify-content-center pb-5">
@@ -40,8 +39,8 @@
               <div class="col-6"><label for="salary">Salary, eur</label>
                 <input type="number" class="form-control" id="salary" min=500 value="500">
               </div>
-              <div class="col-6"><label for="kidsNumber">Number of family members</label>
-                <input type="number" min=1 class="form-control" id="kidsNumber" value="1">
+              <div class="col-6"><label for="numberOfMemebers">Number of family members</label>
+                <input type="number" min=1 class="form-control" id="numberOfMemebers" value="1">
               </div>
             </div>
           </div>
@@ -51,7 +50,7 @@
               <small id="termDetails" class="form-text text-muted">The deal term can not exceed 2 years</small>
             </div>
             <div class="col-6"><label for="loanAmount">Deal amount, eur</label>
-              <input type="number" min="1" max="5000" class="form-control" id="loanAmount" disabled>
+              <input type="number" min="1" max="5000" class="form-control" id="loanAmount">
             </div>
           </div>
           <button id="btnReadHousingValues" type="button" class="btn btn-primary">Submit</button>
