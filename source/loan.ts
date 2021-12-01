@@ -34,8 +34,8 @@ export default abstract class Loan implements LoanCalculator {
         return totalInterest;
     }
 
-    countRemainingBalance(no: number): number {
-        const power1 = Math.pow(this.CONSTONE + this.percentPerMonth, no);
+    countRemainingBalance(paymentNo: number): number {
+        const power1 = Math.pow(this.CONSTONE + this.percentPerMonth, paymentNo);
         const remainingBlance = (this.loanAmount * (this.power - power1)) / (this.power - this.CONSTONE);
         return remainingBlance;
     }
