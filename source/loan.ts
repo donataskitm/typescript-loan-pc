@@ -32,9 +32,15 @@ export default abstract class Loan implements LoanCalculator {
         return totalInterest;
     }
 
+<<<<<<< HEAD
     countRemainingBalance(paymentNumber: number): number {
         const power1 = Math.pow(1 + this.percentPerMonth, paymentNumber);
         const remainingBlance = (this.loanAmount * (this.power - power1)) / (this.power - 1);
+=======
+    countRemainingBalance(paymentNo: number): number {
+        const power1 = Math.pow(this.CONSTONE + this.percentPerMonth, paymentNo);
+        const remainingBlance = (this.loanAmount * (this.power - power1)) / (this.power - this.CONSTONE);
+>>>>>>> 789053b4a13f35d92c551c23ffd20f4aa2ed8624
         return remainingBlance;
     }
 
@@ -102,5 +108,17 @@ export default abstract class Loan implements LoanCalculator {
         tr.appendChild(td);
     }
 
+<<<<<<< HEAD
     isTable = () => isTable();
 }
+=======
+    isTable(): void {
+        if (document.getElementById('calcTable')) {
+            document.getElementById('calcTable')?.remove();
+        }
+        if (document.getElementById('calcUl')) {
+            document.getElementById('calcUl')?.remove();
+        }
+    }
+}
+>>>>>>> 789053b4a13f35d92c551c23ffd20f4aa2ed8624
