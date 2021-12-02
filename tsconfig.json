@@ -8,6 +8,7 @@
       "target": "es5",
       "module": "commonjs",
       "outDir": "./build",
+     "types": ["bootstrap"],
       "sourceMap": true,
       "watch": true,
       "allowJs": true,

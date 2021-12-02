@@ -1,3 +1,4 @@
+import { config } from "./config";
 import Loan from "./loan";
 
 export default class HousingLoan extends Loan {
@@ -5,21 +6,18 @@ export default class HousingLoan extends Loan {
     loanDuration: number;
     interest: number;
 
-    durationLimit = 360;
-
-    constructor(loanAmount: number, loanDuration: number, interest = 2) {
+    constructor(loanAmount: number, loanDuration: number, interest = config.housingLoanPerc) {
         super(loanAmount, loanDuration, interest);
         this.interest = interest;
     }
 
     countMaxLoanAmount(numberOfMembers: number, salary: number) {
-        const minSalaryPercent = 0.4;
-        const maxInterestAmount = salary / numberOfMembers * minSalaryPercent;
+        const maxInterestAmount = salary / numberOfMembers * config.housingMinSalaryPerc;
         return maxInterestAmount;
     }
 
     isValid(salary: number, numberOfMembers: number) {
-        if (this.loanAmount <= 0 || this.loanDuration > this.durationLimit || this.loanDuration == 0 || salary == 0 || numberOfMembers == 0) {
+        if (this.loanAmount <= config.negativeValue || this.loanDuration > config.housingLoanDurationLimit || this.loanDuration == config.emptyField || salary == config.emptyField || numberOfMembers == config.emptyField) {
             alert("Please correct entered data");
             return false;
         }

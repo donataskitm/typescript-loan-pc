@@ -1,4 +1,6 @@
+import { config } from "./config";
 import { LoanCalculator } from "./loanCalculator";
+import { isTable } from "./loanTable";
 
 export default abstract class Loan implements LoanCalculator {
     loanAmount: number;
@@ -7,20 +9,16 @@ export default abstract class Loan implements LoanCalculator {
     percentPerMonth: number;
     power: number;
 
-    readonly MONTHSPERYEAR = 12;
-    readonly PERCENTAGE = 100;
-    readonly CONSTONE = 1;
-
     constructor(loanSize: number, loanDuration: number, interest: number) {
         this.loanAmount = loanSize;
         this.loanDuration = loanDuration;
         this.interest = interest;
-        this.percentPerMonth = this.interest / this.PERCENTAGE / this.MONTHSPERYEAR;
-        this.power = Math.pow(this.CONSTONE + this.percentPerMonth, this.loanDuration);
+        this.percentPerMonth = this.interest / config.totalPercentage / config.monthsPerYear;
+        this.power = Math.pow(1 + this.percentPerMonth, this.loanDuration);
     }
 
     countMonthPayment(): number {
-        const monthPayment = (this.loanAmount * this.percentPerMonth * this.power) / (this.power - this.CONSTONE);
+        const monthPayment = (this.loanAmount * this.percentPerMonth * this.power) / (this.power - 1);
         return monthPayment;
     }
 
@@ -34,9 +32,9 @@ export default abstract class Loan implements LoanCalculator {
         return totalInterest;
     }
 
-    countRemainingBalance(no: number): number {
-        const power1 = Math.pow(this.CONSTONE + this.percentPerMonth, no);
-        const remainingBlance = (this.loanAmount * (this.power - power1)) / (this.power - this.CONSTONE);
+    countRemainingBalance(paymentNumber: number): number {
+        const power1 = Math.pow(1 + this.percentPerMonth, paymentNumber);
+        const remainingBlance = (this.loanAmount * (this.power - power1)) / (this.power - 1);
         return remainingBlance;
     }
 
@@ -57,9 +55,9 @@ export default abstract class Loan implements LoanCalculator {
         this.createRowForLoanInfo(ul, `Deal amount: ${this.loanAmount} eur`);
         this.createRowForLoanInfo(ul, `Deal term: ${this.loanDuration} months`);
         this.createRowForLoanInfo(ul, `Deal interest: ${this.interest}% per year`);
-        this.createRowForLoanInfo(ul, `Monthly return payment: ${monthlyPayment.toFixed(2)} eur`);
-        this.createRowForLoanInfo(ul, `Total interest: ${totalInterest.toFixed(2)} eur`);
-        this.createRowForLoanInfo(ul, `Total payment: ${totalPayment.toFixed(2)} eur`);
+        this.createRowForLoanInfo(ul, `Monthly return payment: ${monthlyPayment.toFixed(config.decimalPlaces)} eur`);
+        this.createRowForLoanInfo(ul, `Total interest: ${totalInterest.toFixed(config.decimalPlaces)} eur`);
+        this.createRowForLoanInfo(ul, `Total payment: ${totalPayment.toFixed(config.decimalPlaces)} eur`);
     }
 
     createRowForLoanInfo(ul: Element, text: string): void {
@@ -91,8 +89,8 @@ export default abstract class Loan implements LoanCalculator {
             const remainingBalance = this.countRemainingBalance(trNumb);
             const payedInterest = this.countInterestAmount(remainingBalance, previuosRemainingBalance);
             this.createTdForPaymentTable(tr, `${trNumb}`);
-            this.createTdForPaymentTable(tr, `${payedInterest.toFixed(2)}`);
-            this.createTdForPaymentTable(tr, `${remainingBalance.toFixed(2)}`);
+            this.createTdForPaymentTable(tr, `${payedInterest.toFixed(config.decimalPlaces)}`);
+            this.createTdForPaymentTable(tr, `${remainingBalance.toFixed(config.decimalPlaces)}`);
             previuosRemainingBalance = remainingBalance;
         }
         loanTable?.appendChild(table);
@@ -104,12 +102,5 @@ export default abstract class Loan implements LoanCalculator {
         tr.appendChild(td);
     }
 
-    isTable(): void {
-        if (document.getElementById('calcTable')) {
-            document.getElementById('calcTable')?.remove();
-        }
-        if (document.getElementById('calcUl')) {
-            document.getElementById('calcUl')?.remove();
-        }
-    }
+    isTable = () => isTable();
 }

@@ -15,23 +15,22 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var config_1 = require("./config");
 var loan_1 = require("./loan");
 var HousingLoan = /** @class */ (function (_super) {
     __extends(HousingLoan, _super);
     function HousingLoan(loanAmount, loanDuration, interest) {
-        if (interest === void 0) { interest = 2; }
+        if (interest === void 0) { interest = config_1.config.housingLoanPerc; }
         var _this = _super.call(this, loanAmount, loanDuration, interest) || this;
-        _this.durationLimit = 360;
         _this.interest = interest;
         return _this;
     }
     HousingLoan.prototype.countMaxLoanAmount = function (numberOfMembers, salary) {
-        var minSalaryPercent = 0.4;
-        var maxInterestAmount = salary / numberOfMembers * minSalaryPercent;
+        var maxInterestAmount = salary / numberOfMembers * config_1.config.housingMinSalaryPerc;
         return maxInterestAmount;
     };
     HousingLoan.prototype.isValid = function (salary, numberOfMembers) {
-        if (this.loanAmount <= 0 || this.loanDuration > this.durationLimit || this.loanDuration == 0 || salary == 0 || numberOfMembers == 0) {
+        if (this.loanAmount <= config_1.config.negativeValue || this.loanDuration > config_1.config.housingLoanDurationLimit || this.loanDuration == config_1.config.emptyField || salary == config_1.config.emptyField || numberOfMembers == config_1.config.emptyField) {
             alert("Please correct entered data");
             return false;
         }

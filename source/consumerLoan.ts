@@ -1,12 +1,12 @@
 import Loan from "./loan";
+import { config } from "./config";
 
 export default class ConsumerLoan extends Loan {
     loanAmount: number;
     loanDuration: number;
     interest: number;
 
-    amountLimit = 10000;
-    durationLimit = 60;
+
 
     constructor(loanAmount: number, loanDuration: number, interest: number) {
         super(loanAmount, loanDuration, interest);
@@ -14,7 +14,7 @@ export default class ConsumerLoan extends Loan {
     }
 
     isValid() {
-        if (this.interest == undefined || this.loanAmount > this.amountLimit || this.loanAmount < 0 || this.loanDuration > this.durationLimit || this.loanAmount == 0 || this.loanDuration == 0) {
+        if (this.interest == undefined || this.loanAmount > config.consumerLoanAmountLimit || this.loanAmount < config.negativeValue || this.loanDuration > config.consumerLoanDurationLimit || this.loanAmount == config.emptyField || this.loanDuration == config.emptyField) {
             alert("Please correct entered data");
             return false;
         }
