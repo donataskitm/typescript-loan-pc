@@ -11,7 +11,7 @@ function countConsumerLoan() {
     var loanType = document.getElementById('loanType').value;
     var dataConsumerLoan = new consumerLoan_1.default(loanAmount, loanTerm, interestList_1.interestList[loanType]);
     if (dataConsumerLoan.isValid()) {
-        dataConsumerLoan.isTable();
+        dataConsumerLoan.removeTableIfExsist();
         dataConsumerLoan.createLoanInfo();
         dataConsumerLoan.createPaymentTable();
     }

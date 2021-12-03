@@ -1,6 +1,7 @@
 import { config } from "./config";
 import { LoanCalculator } from "./loanCalculator";
-import { isTable } from "./loanTable";
+import { removeTableIfExsist, createPaymentTable } from "./loanTable";
+import { createLoanInfo } from "./loanInfoTable";
 
 export default abstract class Loan implements LoanCalculator {
     loanAmount: number;
@@ -43,64 +44,7 @@ export default abstract class Loan implements LoanCalculator {
         return interestAmount;
     }
 
-    createLoanInfo(): void {
-        const loanInfo = document.getElementById('loanInfo');
-        const ul = document.createElement('UL');
-        ul.setAttribute('class', 'list-group');
-        ul.setAttribute('id', 'calcUl');
-        loanInfo?.appendChild(ul);
-        const monthlyPayment = this.countMonthPayment();
-        const totalPayment = this.countTotalPayment(monthlyPayment);
-        const totalInterest = this.countTotalInterest(totalPayment);
-        this.createRowForLoanInfo(ul, `Deal amount: ${this.loanAmount} eur`);
-        this.createRowForLoanInfo(ul, `Deal term: ${this.loanDuration} months`);
-        this.createRowForLoanInfo(ul, `Deal interest: ${this.interest}% per year`);
-        this.createRowForLoanInfo(ul, `Monthly return payment: ${monthlyPayment.toFixed(config.decimalPlaces)} eur`);
-        this.createRowForLoanInfo(ul, `Total interest: ${totalInterest.toFixed(config.decimalPlaces)} eur`);
-        this.createRowForLoanInfo(ul, `Total payment: ${totalPayment.toFixed(config.decimalPlaces)} eur`);
-    }
-
-    createRowForLoanInfo(ul: Element, text: string): void {
-        const li = document.createElement('LI');
-        li.setAttribute('class', 'list-group-item');
-        li.appendChild(document.createTextNode(`${text}`));
-        ul.appendChild(li);
-    }
-
-
-    createPaymentTable(): void {
-        const loanTable = document.getElementById('loanTable');
-        const table = document.createElement('TABLE');
-        table.setAttribute('id', 'calcTable');
-        table.setAttribute('class', 'table table-striped pt-5');
-        const tableHead = document.createElement('THEAD');
-        table.appendChild(tableHead);
-        const trHead = document.createElement('TR');
-        tableHead.appendChild(trHead);
-        this.createTdForPaymentTable(trHead, 'Payment No');
-        this.createTdForPaymentTable(trHead, 'Amount');
-        this.createTdForPaymentTable(trHead, 'Interest Payed');
-        const tableBody = document.createElement('TBODY');
-        table.appendChild(tableBody);
-        let previuosRemainingBalance = this.loanAmount;
-        for (let trNumb = 1; trNumb <= this.loanDuration; trNumb++) {
-            const tr = document.createElement('TR');
-            tableBody.appendChild(tr);
-            const remainingBalance = this.countRemainingBalance(trNumb);
-            const payedInterest = this.countInterestAmount(remainingBalance, previuosRemainingBalance);
-            this.createTdForPaymentTable(tr, `${trNumb}`);
-            this.createTdForPaymentTable(tr, `${payedInterest.toFixed(config.decimalPlaces)}`);
-            this.createTdForPaymentTable(tr, `${remainingBalance.toFixed(config.decimalPlaces)}`);
-            previuosRemainingBalance = remainingBalance;
-        }
-        loanTable?.appendChild(table);
-    }
-
-    createTdForPaymentTable(tr: Element, text: string): void {
-        const td = document.createElement('TH');
-        td.appendChild(document.createTextNode(`${text}`));
-        tr.appendChild(td);
-    }
-
-    isTable = () => isTable();
+    removeTableIfExsist = () => removeTableIfExsist();
+    createPaymentTable = createPaymentTable.bind(this);
+    createLoanInfo = createLoanInfo.bind(this);
 }

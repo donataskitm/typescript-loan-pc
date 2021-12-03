@@ -15,7 +15,7 @@ export function countHousingLoan() {
       const maxMonthPayment = dataHousingLoan.countMaxLoanAmount(numberOfMembers, salary);
       const monthPayment = dataHousingLoan.countMonthPayment();
       if (dataHousingLoan.isExpectationOk(maxMonthPayment, monthPayment)) {
-         dataHousingLoan.isTable();
+         dataHousingLoan.removeTableIfExsist();
          dataHousingLoan.createLoanInfo();
          dataHousingLoan.createPaymentTable();
       }

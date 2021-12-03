@@ -11,7 +11,7 @@ export function countConsumerLoan() {
     const loanType = (<HTMLInputElement>document.getElementById('loanType')).value;
     const dataConsumerLoan = new ConsumerLoan(loanAmount, loanTerm, interestList[loanType]);
     if (dataConsumerLoan.isValid()) {
-        dataConsumerLoan.isTable();
+        dataConsumerLoan.removeTableIfExsist();
         dataConsumerLoan.createLoanInfo();
         dataConsumerLoan.createPaymentTable();
     }

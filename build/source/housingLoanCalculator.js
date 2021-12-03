@@ -14,7 +14,7 @@ function countHousingLoan() {
         var maxMonthPayment = dataHousingLoan.countMaxLoanAmount(numberOfMembers, salary);
         var monthPayment = dataHousingLoan.countMonthPayment();
         if (dataHousingLoan.isExpectationOk(maxMonthPayment, monthPayment)) {
-            dataHousingLoan.isTable();
+            dataHousingLoan.removeTableIfExsist();
             dataHousingLoan.createLoanInfo();
             dataHousingLoan.createPaymentTable();
         }
