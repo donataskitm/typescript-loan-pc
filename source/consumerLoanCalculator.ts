@@ -1,8 +1,16 @@
 import ConsumerLoan from "./consumerLoan";
 import { interestList } from "./interestList";
+import { loadConsumerListBoxItems } from "./consumerListBox";
 
 const btn = document.getElementById('btnConsumerLoanValues');
 btn?.addEventListener("click", countConsumerLoan);
+
+window.addEventListener('load', (evt) => {
+    const url: string = document.URL;
+    if (url.indexOf("consumer-loan.html") > 0) {
+        loadConsumerListBoxItems();
+    }
+});
 
 export function countConsumerLoan() {
 
