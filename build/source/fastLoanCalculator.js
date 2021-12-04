@@ -8,7 +8,7 @@ function countFastLoan() {
     var loanAmount = document.getElementById('loanAmount').value;
     var loanTerm = document.getElementById('loanTerm').value;
     var dataFastLoan = new fastLoan_1.default(Number(loanAmount), Number(loanTerm));
-    if (dataFastLoan.isValid()) {
+    if (dataFastLoan.isValidFastLoanFields()) {
         dataFastLoan.removeTableIfExsist();
         dataFastLoan.createLoanInfo();
         dataFastLoan.createPaymentTable();

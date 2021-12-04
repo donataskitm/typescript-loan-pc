@@ -9,7 +9,7 @@ export function countFastLoan() {
    const loanAmount = (<HTMLInputElement>document.getElementById('loanAmount')).value;
    const loanTerm = (<HTMLInputElement>document.getElementById('loanTerm')).value;
    const dataFastLoan = new FastLoan(Number(loanAmount), Number(loanTerm));
-   if (dataFastLoan.isValid()) {
+   if (dataFastLoan.isValidFastLoanFields()) {
       dataFastLoan.removeTableIfExsist();
       dataFastLoan.createLoanInfo();
       dataFastLoan.createPaymentTable();

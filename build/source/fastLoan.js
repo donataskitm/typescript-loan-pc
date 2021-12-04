@@ -17,19 +17,15 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var loan_1 = require("./loan");
 var config_1 = require("./config");
+var FieldsValidation_1 = require("./FieldsValidation");
 var FastLoan = /** @class */ (function (_super) {
     __extends(FastLoan, _super);
     function FastLoan(loanAmount, loanDuration, interest) {
         if (interest === void 0) { interest = config_1.config.fastLoanPerc; }
-        return _super.call(this, loanAmount, loanDuration, interest) || this;
+        var _this = _super.call(this, loanAmount, loanDuration, interest) || this;
+        _this.isValidFastLoanFields = FieldsValidation_1.isValidFastLoanFields.bind(_this);
+        return _this;
     }
-    FastLoan.prototype.isValid = function () {
-        if (this.loanAmount > config_1.config.fastLoanAmountLimit || this.loanDuration > config_1.config.fastLoanDurationLimit || this.loanAmount == config_1.config.emptyField || this.loanDuration == config_1.config.emptyField) {
-            alert("Please correct entered data");
-            return false;
-        }
-        return true;
-    };
     return FastLoan;
 }(loan_1.default));
 exports.default = FastLoan;

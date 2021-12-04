@@ -1,5 +1,6 @@
 import { config } from "./config";
 import Loan from "./loan";
+import { isValidHousingLoanFields } from "./FieldsValidation";
 
 export default class HousingLoan extends Loan {
     loanAmount: number;
@@ -16,13 +17,7 @@ export default class HousingLoan extends Loan {
         return maxInterestAmount;
     }
 
-    isValid(salary: number, numberOfMembers: number) {
-        if (this.loanAmount <= config.negativeValue || this.loanDuration > config.housingLoanDurationLimit || this.loanDuration == config.emptyField || salary == config.emptyField || numberOfMembers == config.emptyField) {
-            alert("Please correct entered data");
-            return false;
-        }
-        return true;
-    }
+    isValidHousingLoanFields = isValidHousingLoanFields.bind(this);
 
     isExpectationOk(maxMonthPayment: number, monthPayment: number) {
         if (maxMonthPayment < monthPayment) {

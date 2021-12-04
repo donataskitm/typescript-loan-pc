@@ -11,6 +11,7 @@ var HOUSING_LOAN_PERC = 2;
 var FAST_LOAN_PERC = 20;
 var EMPTY_FIELD = 0;
 var NEGATIVE_VALUE = 0;
+var NUMBER_ACTIVE_URL = 0;
 var MONTHS_PER_YEAR = 12;
 var TOTAL_PERCENTAGE = 100;
 var DECIMAL_PALCES = 2;
@@ -27,6 +28,7 @@ exports.config = {
     negativeValue: NEGATIVE_VALUE,
     monthsPerYear: MONTHS_PER_YEAR,
     totalPercentage: TOTAL_PERCENTAGE,
-    decimalPlaces: DECIMAL_PALCES
+    decimalPlaces: DECIMAL_PALCES,
+    numberActiveUrl: NUMBER_ACTIVE_URL
 };
 //# sourceMappingURL=config.js.map

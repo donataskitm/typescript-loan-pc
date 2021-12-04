@@ -8,6 +8,7 @@ const HOUSING_LOAN_PERC = 2;
 const FAST_LOAN_PERC = 20;
 const EMPTY_FIELD = 0;
 const NEGATIVE_VALUE = 0;
+const NUMBER_ACTIVE_URL = 0;
 const MONTHS_PER_YEAR = 12;
 const TOTAL_PERCENTAGE = 100;
 const DECIMAL_PALCES = 2;
@@ -25,5 +26,6 @@ export const config: { [key: string]: number } = {
     negativeValue: NEGATIVE_VALUE,
     monthsPerYear: MONTHS_PER_YEAR,
     totalPercentage: TOTAL_PERCENTAGE,
-    decimalPlaces: DECIMAL_PALCES
+    decimalPlaces: DECIMAL_PALCES,
+    numberActiveUrl: NUMBER_ACTIVE_URL
 };

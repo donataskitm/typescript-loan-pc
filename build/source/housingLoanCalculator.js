@@ -10,7 +10,7 @@ function countHousingLoan() {
     var dataHousingLoan = new housingLoan_1.default(Number(loanAmount), Number(loanTerm));
     var salary = Number(document.getElementById('salary').value);
     var numberOfMembers = Number(document.getElementById('numberOfMemebers').value);
-    if (dataHousingLoan.isValid(salary, numberOfMembers)) {
+    if (dataHousingLoan.isValidHousingLoanFields(salary, numberOfMembers)) {
         var maxMonthPayment = dataHousingLoan.countMaxLoanAmount(numberOfMembers, salary);
         var monthPayment = dataHousingLoan.countMonthPayment();
         if (dataHousingLoan.isExpectationOk(maxMonthPayment, monthPayment)) {

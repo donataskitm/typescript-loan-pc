@@ -11,7 +11,7 @@ export function countHousingLoan() {
    const salary = Number((<HTMLInputElement>document.getElementById('salary')).value);
    const numberOfMembers = Number((<HTMLInputElement>document.getElementById('numberOfMemebers')).value);
 
-   if (dataHousingLoan.isValid(salary, numberOfMembers)) {
+   if (dataHousingLoan.isValidHousingLoanFields(salary, numberOfMembers)) {
       const maxMonthPayment = dataHousingLoan.countMaxLoanAmount(numberOfMembers, salary);
       const monthPayment = dataHousingLoan.countMonthPayment();
       if (dataHousingLoan.isExpectationOk(maxMonthPayment, monthPayment)) {
