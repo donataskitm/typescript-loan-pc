@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadConsumerListBoxItems = void 0;
-var interestList_1 = require("./interestList");
+var interestList_1 = require("./config/interestList");
 function loadConsumerListBoxItems() {
     var loanList = document.getElementById('loanType');
     var defaultOption = document.createElement('OPTION');

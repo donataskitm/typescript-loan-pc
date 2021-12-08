@@ -15,15 +15,17 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var config_1 = require("./config");
+exports.countHousingLoan = void 0;
+var config_1 = require("./config/config");
 var loan_1 = require("./loan");
-var FieldsValidation_1 = require("./FieldsValidation");
+var fieldsValidation_1 = require("./utilities/fieldsValidation");
+var handleLoanInfo_1 = require("./utilities/handleLoanInfo");
 var HousingLoan = /** @class */ (function (_super) {
     __extends(HousingLoan, _super);
     function HousingLoan(loanAmount, loanDuration, interest) {
         if (interest === void 0) { interest = config_1.config.housingLoanPerc; }
         var _this = _super.call(this, loanAmount, loanDuration, interest) || this;
-        _this.isValidHousingLoanFields = FieldsValidation_1.isValidHousingLoanFields.bind(_this);
+        _this.isValidHousingLoanFields = fieldsValidation_1.isValidHousingLoanFields.bind(_this);
         _this.interest = interest;
         return _this;
     }
@@ -41,4 +43,26 @@ var HousingLoan = /** @class */ (function (_super) {
     return HousingLoan;
 }(loan_1.default));
 exports.default = HousingLoan;
+var btn = document.getElementById('btnReadHousingValues');
+btn === null || btn === void 0 ? void 0 : btn.addEventListener("click", countHousingLoan);
+function countHousingLoan() {
+    var err = [];
+    var loanAmount = document.getElementById('loanAmount').value;
+    var loanTerm = document.getElementById('loanTerm').value;
+    var dataHousingLoan = new HousingLoan(Number(loanAmount), Number(loanTerm));
+    var salary = Number(document.getElementById('salary').value);
+    var numberOfMembers = Number(document.getElementById('numberOfMemebers').value);
+    err = dataHousingLoan.isValidHousingLoanFields(this);
+    if (err.length === config_1.config.emptyArray) {
+        var maxMonthPayment = dataHousingLoan.countMaxLoanAmount(numberOfMembers, salary);
+        var monthPayment = dataHousingLoan.countMonthPayment();
+        if (dataHousingLoan.isExpectationOk(maxMonthPayment, monthPayment)) {
+            dataHousingLoan.showTables();
+        }
+    }
+    else {
+        (0, handleLoanInfo_1.showErrors)(err);
+    }
+}
+exports.countHousingLoan = countHousingLoan;
 //# sourceMappingURL=housingLoan.js.map

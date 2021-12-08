@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createLoanInfo = void 0;
-var config_1 = require("./config");
+var config_1 = require("./config/config");
 function createLoanInfo() {
     var loanInfo = document.getElementById('loanInfo');
     var ul = document.createElement('UL');

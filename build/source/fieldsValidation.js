@@ -1,29 +1,66 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidHousingLoanFields = exports.isValidFastLoanFields = exports.isValidConsumerFields = void 0;
-var config_1 = require("./config");
+var config_1 = require("./config/config");
+var err = [];
 function isValidConsumerFields() {
-    if (this.interest == undefined || this.loanAmount > config_1.config.consumerLoanAmountLimit || this.loanAmount < config_1.config.negativeValue || this.loanDuration > config_1.config.consumerLoanDurationLimit || this.loanAmount == config_1.config.emptyField || this.loanDuration == config_1.config.emptyField) {
-        alert("Please correct entered data");
-        return false;
+    err = [];
+    if (this.interest == undefined) {
+        err.push('loanType');
     }
-    return true;
+    if (this.loanAmount > config_1.config.consumerLoanAmountLimit) {
+        err.push('loanAmountBigger');
+    }
+    if (this.loanAmount < config_1.config.negativeValue) {
+        err.push('negativeLoanValue');
+    }
+    if (this.loanDuration > config_1.config.consumerLoanDurationLimit) {
+        err.push('loanDurationBigger');
+    }
+    isEmptyLoan(err, this.loanAmount);
+    isLoanDurationEmpty(err, this.loanDuration);
+    return err;
 }
 exports.isValidConsumerFields = isValidConsumerFields;
 function isValidFastLoanFields() {
-    if (this.loanAmount > config_1.config.fastLoanAmountLimit || this.loanDuration > config_1.config.fastLoanDurationLimit || this.loanAmount == config_1.config.emptyField || this.loanDuration == config_1.config.emptyField) {
-        alert("Please correct entered data");
-        return false;
+    err = [];
+    if (this.loanAmount > config_1.config.fastLoanAmountLimit) {
+        err.push('loanAmountBigger');
     }
-    return true;
+    if (this.loanDuration > config_1.config.fastLoanDurationLimit) {
+        err.push('loanDurationBigger');
+    }
+    isEmptyLoan(err, this.loanAmount);
+    isLoanDurationEmpty(err, this.loanDuration);
+    return err;
 }
 exports.isValidFastLoanFields = isValidFastLoanFields;
 function isValidHousingLoanFields(salary, numberOfMembers) {
-    if (this.loanAmount <= config_1.config.negativeValue || this.loanDuration > config_1.config.housingLoanDurationLimit || this.loanDuration == config_1.config.emptyField || salary == config_1.config.emptyField || numberOfMembers == config_1.config.emptyField) {
-        alert("Please correct entered data");
-        return false;
+    err = [];
+    if (this.loanAmount <= config_1.config.negativeValue) {
+        err.push('negativeLoanValue');
     }
-    return true;
+    if (this.loanDuration > config_1.config.housingLoanDurationLimit) {
+        err.push('loanDurationBigger');
+    }
+    isLoanDurationEmpty(err, this.loanDuration);
+    if (salary == config_1.config.emptyField) {
+        err.push('salaryEmpty');
+    }
+    if (numberOfMembers == config_1.config.emptyField) {
+        err.push('membersNone');
+    }
+    return err;
 }
 exports.isValidHousingLoanFields = isValidHousingLoanFields;
+function isEmptyLoan(err, loanAmount) {
+    if (loanAmount == config_1.config.emptyField) {
+        err.push('loanAmountEmpty');
+    }
+}
+function isLoanDurationEmpty(err, loanDuration) {
+    if (loanDuration == config_1.config.emptyField) {
+        err.push('loanTermEmpty');
+    }
+}
 //# sourceMappingURL=FieldsValidation.js.map

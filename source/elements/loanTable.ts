@@ -1,7 +1,7 @@
-import { config } from "./config";
-import Loan from "./loan";
+import { config } from "../config/config";
+import Loan from "../loan";
 
- export function removeTableIfExsist(): void {
+export function removeTableIfExsist(): void {
     if (document.getElementById('calcTable')) {
         document.getElementById('calcTable')?.remove();
     }
@@ -15,13 +15,7 @@ export function createPaymentTable(this: Loan): void {
     const table = document.createElement('TABLE');
     table.setAttribute('id', 'calcTable');
     table.setAttribute('class', 'table table-striped pt-5');
-    const tableHead = document.createElement('THEAD');
-    table.appendChild(tableHead);
-    const trHead = document.createElement('TR');
-    tableHead.appendChild(trHead);
-    createTdForPaymentTable(trHead, 'Payment No');
-    createTdForPaymentTable(trHead, 'Amount');
-    createTdForPaymentTable(trHead, 'Interest Payed');
+    createHeadForPaymentTable(table);
     const tableBody = document.createElement('TBODY');
     table.appendChild(tableBody);
     let previuosRemainingBalance = this.loanAmount;
@@ -32,11 +26,10 @@ export function createPaymentTable(this: Loan): void {
         const payedInterest = this.countInterestAmount(remainingBalance, previuosRemainingBalance);
         createTdForPaymentTable(tr, `${trNumb}`);
         createTdForPaymentTable(tr, `${payedInterest.toFixed(config.decimalPlaces)}`);
-       createTdForPaymentTable(tr, `${remainingBalance.toFixed(config.decimalPlaces)}`);
+        createTdForPaymentTable(tr, `${remainingBalance.toFixed(config.decimalPlaces)}`);
         previuosRemainingBalance = remainingBalance;
     }
     loanTable?.appendChild(table);
-
 }
 
 function createTdForPaymentTable(tr: Element, text: string): void {
@@ -44,3 +37,14 @@ function createTdForPaymentTable(tr: Element, text: string): void {
     td.appendChild(document.createTextNode(`${text}`));
     tr.appendChild(td);
 }
+
+function createHeadForPaymentTable(table: Element): void {
+    const tableHead = document.createElement('THEAD');
+    table.appendChild(tableHead);
+    const trHead = document.createElement('TR');
+    tableHead.appendChild(trHead);
+    createTdForPaymentTable(trHead, 'Payment No');
+    createTdForPaymentTable(trHead, 'Amount');
+    createTdForPaymentTable(trHead, 'Interest Payed');
+}
+
