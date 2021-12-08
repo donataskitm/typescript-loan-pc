@@ -1,6 +1,6 @@
-import { interestList } from "./interestList";
+import { interestList } from "../config/interestList";
 
-export function  loadConsumerListBoxItems():void {
+export function loadConsumerListBoxItems(): void {
     const loanList = (<HTMLInputElement>document.getElementById('loanType'));
     const defaultOption = document.createElement('OPTION');
     defaultOption.innerHTML = 'Select loan type';

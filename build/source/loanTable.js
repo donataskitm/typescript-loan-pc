@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPaymentTable = exports.removeTableIfExsist = void 0;
-var config_1 = require("./config");
+var config_1 = require("./config/config");
 function removeTableIfExsist() {
     var _a, _b;
     if (document.getElementById('calcTable')) {

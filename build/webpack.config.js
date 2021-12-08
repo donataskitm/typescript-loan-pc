@@ -1,6 +1,6 @@
 var path = require('path');
 module.exports = {
-    entry: ['./source/fastLoanCalculator.ts', './source/housingLoanCalculator.ts', './source/consumerLoanCalculator.ts'],
+    entry: ['./source/fastLoan.ts', './source/housingLoan.ts', './source/consumerLoan.ts'],
     devtool: 'source-map',
     module: {
         rules: [

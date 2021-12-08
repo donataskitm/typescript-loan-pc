@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var config_1 = require("./config");
-var loanTable_1 = require("./loanTable");
-var loanInfoTable_1 = require("./loanInfoTable");
+var config_1 = require("./config/config");
+var loanTable_1 = require("./elements/loanTable");
+var loanInfoTable_1 = require("./elements/loanInfoTable");
+var handleLoanInfo_1 = require("./utilities/handleLoanInfo");
 var Loan = /** @class */ (function () {
     function Loan(loanSize, loanDuration, interest) {
         this.removeTableIfExsist = function () { return (0, loanTable_1.removeTableIfExsist)(); };
         this.createPaymentTable = loanTable_1.createPaymentTable.bind(this);
         this.createLoanInfo = loanInfoTable_1.createLoanInfo.bind(this);
+        this.showTables = handleLoanInfo_1.showTables.bind(this);
         this.loanAmount = loanSize;
         this.loanDuration = loanDuration;
         this.interest = interest;

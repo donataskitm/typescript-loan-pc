@@ -1,7 +1,8 @@
-import { config } from "./config";
-import { LoanCalculator } from "./loanCalculator";
-import { removeTableIfExsist, createPaymentTable } from "./loanTable";
-import { createLoanInfo } from "./loanInfoTable";
+import { config } from "./config/config";
+import { LoanCalculator } from "./interface/loanCalculator";
+import { removeTableIfExsist, createPaymentTable } from "./elements/loanTable";
+import { createLoanInfo } from "./elements/loanInfoTable";
+import { showTables } from "./utilities/handleLoanInfo";
 
 export default abstract class Loan implements LoanCalculator {
     loanAmount: number;
@@ -47,4 +48,5 @@ export default abstract class Loan implements LoanCalculator {
     removeTableIfExsist = () => removeTableIfExsist();
     createPaymentTable = createPaymentTable.bind(this);
     createLoanInfo = createLoanInfo.bind(this);
+    showTables =  showTables.bind(this);
 }
