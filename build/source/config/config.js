@@ -16,6 +16,7 @@ var NUMBER_ACTIVE_URL = 0;
 var MONTHS_PER_YEAR = 12;
 var TOTAL_PERCENTAGE = 100;
 var DECIMAL_PALCES = 2;
+var MIN_DURATION_MONTH = 1;
 exports.config = {
     consumerLoanAmountLimit: CONSUMER_LOAN_LIMIT,
     consumerLoanDurationLimit: CONSUMER_LOAN_DURATION,
@@ -31,6 +32,7 @@ exports.config = {
     monthsPerYear: MONTHS_PER_YEAR,
     totalPercentage: TOTAL_PERCENTAGE,
     decimalPlaces: DECIMAL_PALCES,
-    numberActiveUrl: NUMBER_ACTIVE_URL
+    numberActiveUrl: NUMBER_ACTIVE_URL,
+    minDurationMonth: MIN_DURATION_MONTH,
 };
 //# sourceMappingURL=config.js.map

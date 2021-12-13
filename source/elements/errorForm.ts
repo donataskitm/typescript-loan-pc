@@ -1,4 +1,3 @@
-import { errorStrings } from "../config/errorStrings";
 
 export function showFormErrors(err: string[]) {
     const formErrors = (<HTMLInputElement>document.getElementById('errors'));
@@ -8,7 +7,7 @@ export function showFormErrors(err: string[]) {
 
     for (let errNumber = 0; errNumber < err.length; errNumber++) {
         const li = document.createElement('LI');
-        li.appendChild(document.createTextNode(errorStrings[err[errNumber]]));
+        li.appendChild(document.createTextNode(err[errNumber]));
         ul.appendChild(li);
         formErrors.appendChild(ul);
     }

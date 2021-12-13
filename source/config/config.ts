@@ -13,6 +13,7 @@ const NUMBER_ACTIVE_URL = 0;
 const MONTHS_PER_YEAR = 12;
 const TOTAL_PERCENTAGE = 100;
 const DECIMAL_PALCES = 2;
+const MIN_DURATION_MONTH = 1;
 
 export const config: { [key: string]: number } = {
     consumerLoanAmountLimit: CONSUMER_LOAN_LIMIT,
@@ -29,5 +30,6 @@ export const config: { [key: string]: number } = {
     monthsPerYear: MONTHS_PER_YEAR,
     totalPercentage: TOTAL_PERCENTAGE,
     decimalPlaces: DECIMAL_PALCES,
-    numberActiveUrl: NUMBER_ACTIVE_URL
+    numberActiveUrl: NUMBER_ACTIVE_URL,
+    minDurationMonth: MIN_DURATION_MONTH,
 };
