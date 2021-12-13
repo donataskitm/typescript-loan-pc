@@ -1,6 +1,7 @@
 import { config } from "./config";
 
 const DURATION_TEXT = 'Laon duration can not exceed ';
+const AMOUNT_TEXT = 'Laon amount can not exceed ';
 const NEGATIVE_TEXT = 'field can not contain negative value';
 const EMPTY_TEXT = 'field can not be empty';
 
@@ -11,8 +12,8 @@ const NEGATIVE_LOAN_AMOUNT = 'Amount ' + NEGATIVE_TEXT;
 const NEGATIVE_LOAN_DURATION = 'Term ' + NEGATIVE_TEXT;
 const NEGATIVE_SALARY_VALUE = 'Salary ' + NEGATIVE_TEXT;
 const NEGATIVE_MEMBERS_VALUE = 'Members ' + NEGATIVE_TEXT;
-const LOAN_AMOUNT_BIGGER = `Loan amount can not exceed ` + `${config.consumerLoanAmountLimit}` + ' eur';
-const FAST_LOAN_AMOUNT_BIGGER = DURATION_TEXT + `${config.fastLoanAmountLimit}` + ' eur';
+const LOAN_AMOUNT_BIGGER = AMOUNT_TEXT + `${config.consumerLoanAmountLimit}` + ' eur';
+const FAST_LOAN_AMOUNT_BIGGER = AMOUNT_TEXT + `${config.fastLoanAmountLimit}` + ' eur';
 const LOAN_DURATION_BIGGER = DURATION_TEXT + `${config.consumerLoanDurationLimit}`+ ' months';
 const FAST_LOAN_DURATION_BIGGER = DURATION_TEXT + `${config.fastLoanDurationLimit}`+ ' months';
 const HOUSING_DURATION_BIGGER = DURATION_TEXT + `${config.housingLoanDurationLimit}`+ ' months';
